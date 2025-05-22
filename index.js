@@ -2,9 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = 8000;
-// const { router: productsRouter } = require("./app/products");
-// const categories = require("./app/categories");
-// const users = require("./app/users");
+const { router: productsRouter } = require("./app/products");
+const categories = require("./app/categories");
+const users = require("./app/users");
 // const admin = require("./app/admin");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -15,9 +15,9 @@ async function start() {
   app.use(cors());
   // app.use(express.static("public"));
   // app.use(express.json());
-  // app.use("/products", productsRouter);
-  // app.use("/categories", categories);
-  // app.use("/users", users);
+  app.use("/products", productsRouter);
+  app.use("/categories", categories);
+  app.use("/users", users);
   // app.use("/admin", admin);
   // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

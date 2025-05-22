@@ -3,7 +3,7 @@ const router = express.Router();
 const nanoid = require("nanoid");
 const multer = require("multer");
 const path = require("path");
-const config = require("../config.js");
+const config = require("../confiq.js");
 const Product = require("../models/product-model.js");
 const auth = require("./middleware/auth.js");
 const permit = require("./middleware/permit.js");
@@ -21,7 +21,7 @@ const upload = multer({ storage });
 
 async function listProducts(req, res) {
   try {
-    const results = await Product.find;
+    const results = await Product.find();
     res.send(results);
   } catch (error) {
     res.sendStatus(500);
