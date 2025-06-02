@@ -14,7 +14,7 @@ async function start() {
   await mongoose.connect("mongodb://localhost:27017/shop");
   app.use(cors());
   // app.use(express.static("public"));
-  // app.use(express.json());
+  app.use(express.json());
   app.use("/products", productsRouter);
   app.use("/categories", categories);
   app.use("/users", users);

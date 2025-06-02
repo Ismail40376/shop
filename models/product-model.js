@@ -23,6 +23,14 @@ const ProductSchema = new Schema({
   image: {
     type: String,
   },
+  isFavorite: {
+    type: Boolean,
+    default: false,
+  },
+  rating: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const Product = mongoose.model("Product", ProductSchema);
