@@ -13,23 +13,23 @@ const ProductSchema = new Schema({
   description: {
     type: String,
   },
-  user_id: {
-    type: Schema.Types.ObjectId,
-  },
   category_id: {
     type: Schema.Types.ObjectId,
+    ref: "Category",
     required: true,
   },
   image: {
     type: String,
   },
-  isFavorite: {
-    type: Boolean,
-    default: false,
-  },
+
   rating: {
     type: Number,
     default: 0,
+  },
+  qty: {
+    type: Number,
+    required: true,
+    default: 1,
   },
 });
 
