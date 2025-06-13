@@ -8,7 +8,7 @@ router.post("/:productId", async (req, res) => {
     const { userId } = req.body;
     const { productId } = req.params;
 
-    await Use.findByIdAndUpdate(userId, {
+    await User.findByIdAndUpdate(userId, {
       $addToSet: { favorites: productId },
     });
     res.status(200).send({ message: "Product added to favorites" });
@@ -31,4 +31,4 @@ router.delete("/:productId", async (req, res) => {
   }
 });
 
-module.export = router;
+module.exports = router;

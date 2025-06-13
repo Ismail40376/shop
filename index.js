@@ -9,6 +9,7 @@ const users = require("./app/users");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const favorites = require("./app/favorites");
+const cart = require("./app/cart");
 // const { swaggerUi, swaggerDocument } = require("./swagger");
 
 async function start() {
@@ -20,6 +21,7 @@ async function start() {
   app.use("/categories", categories);
   app.use("/users", users);
   app.use("/favorites", favorites);
+  app.use("/cart", cart);
   // app.use("/admin", admin);
   // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
