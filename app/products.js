@@ -61,10 +61,12 @@ async function listProducts(req, res) {
     const { category } = req.query;
     let filter = {};
     if (category) {
+      const foundCategory = await Category.findOne({ title: category });
+      if (!foundCategory) return res.status(404).send("Category not found");
       filter.category_id = foundCategory._id;
     }
     const results = await Product.find(filter);
-    res.send(productsWithFavorites);
+    res.send(results);
   } catch (error) {
     console.error(error);
     res.sendStatus(500);

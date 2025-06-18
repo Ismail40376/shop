@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("./middleware/auth");
-const user = require("../models/user-model");
+const User = require("../models/user-model");
+const Product = require("../models/product-model");
 
 router.post("/:productId", auth, async (req, res) => {
   const userId = req.user.id;
@@ -13,11 +14,12 @@ router.post("/:productId", auth, async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    const existing = user.cart.find;
+    const existing = user.cart.find(item => item.product.toString() === productId);
     if (existing) {
       existing.quantity += quantity;
     } else {
-      user.cart.push({ product: productId, quantity });
+      const product = await Product.findById(productId);
+      user.cart.push({ product, quantity });
     }
     await user.save();
     res.status(200).json({ message: "Product added to cart", cart: user.cart });
